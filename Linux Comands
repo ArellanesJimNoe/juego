@@ -1,0 +1,8 @@
+youtube-dl -> Descargar videos
+banner -> Mensajes				 _______________
+cd /etc/NetworkManager/system-connections/	|		|
+ls -a					->	| wifi password|						
+sudo cat INFINITUM2988.nmconnection		|_______________|
+
+grabacion de pantalla-> gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 300
+

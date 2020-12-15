@@ -1,0 +1,128 @@
+ruta xampp: /opt/lampp
+iniciar xampp: sudo /opt/lampp/lampp start
+parara xampp: sudo /opt/lampp/lampp stop
+iniciar panel: cd /opt/lampp
+sudo ./manager-linux-x64.run
+
+consola mysql: sudo /opt/lampp/lampp startmysql
+abrir consola: /opt/lampp/bin/mysql -u root
+para servicio de base de datos: sudo /opt/lampp/lampp stopmysql
+
+// BASE DE DATOS SIMPLE //
+
+CREATE DATABASE mydb;
+USE mydb;
+CREATE TABLE mitabla ( id INT PRIMARY KEY, nombre VARCHAR(20) );
+INSERT INTO mitabla VALUES ( 1, 'Will' );
+INSERT INTO mitabla VALUES ( 2, 'Marry' );
+INSERT INTO mitabla VALUES ( 3, 'Dean' );
+SELECT id, nombre FROM mitabla WHERE id = 1;
+UPDATE mitabla SET nombre = 'Willy' WHERE id = 1;
+SELECT id, nombre FROM mitabla;
+DELETE FROM mitabla WHERE id = 1;
+SELECT id, nombre FROM mitabla;
+DROP DATABASE mydb;
+SELECT count(1) from mitabla; da el número de registros en la tabla
+
+// Practicas SQL //
+
+DELETE FROM trabajadores WHERE Nombre='JUlian Brndt';
+
+
+
+MariaDB [agencia]> CREATE TABLE marcas
+    -> (codigo VARCHAR (20),
+    -> Nombre VARCHAR(50) NOT NULL,
+    -> Pais VARCHAR(50) );
+Query OK, 0 rows affected (0.289 sec)
+
+MariaDB [agencia]> INSERT marcas (codigo, Nombre, Pais)
+    -> VALUES('FER', 'Ferrari', 'Italia');
+Query OK, 1 row affected (0.085 sec)
+
+MariaDB [agencia]> INSERT marcas (codigo, Nombre, Pais)
+    ->     -> VALUES('SAL', 'Saleen', 'EEUU');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-> VALUES('SAL', 'Saleen', 'EEUU')' at line 2
+MariaDB [agencia]> INSERT marcas (codigo, Nombre, Pais)     -> VALUES('SAL', 'Saleen', 'Estados Unidos');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-> VALUES('SAL', 'Saleen', 'Estados Unidos')' at line 1
+MariaDB [agencia]> INSERT marcas (codigo, Nombre, Pais)     -> VALUES('SAL', 'Saleen', 'Estados Unidos');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-> VALUES('SAL', 'Saleen', 'Estados Unidos')' at line 1
+MariaDB [agencia]> INSERT marcas (codigo, Nombre, Pais)
+    -> VALUES ('SAL', 'Saleen', 'EEUU');
+Query OK, 1 row affected (0.084 sec)
+
+MariaDB [agencia]> INSER TABLE modelo
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSER TABLE modelo' at line 1
+MariaDB [agencia]> CREATE TABLE modelo
+    -> (marca VARCHAR(50),
+    -> Nombre VARCHAR(50),
+    -> Segmento VARCHAR(50) );
+Query OK, 0 rows affected (0.290 sec)
+
+MariaDB [agencia]> INSERT modelo (marca, Nombre, Segmento)
+    -> VALUES ('Seelen', 'S', 'Deportivo');
+Query OK, 1 row affected (0.059 sec)
+
+MariaDB [agencia]> INSERT modelo (marca, Nombre, Segmento) VALUES ('Ferrari', 'F', 'Deportivo');
+Query OK, 1 row affected (0.061 sec)
+
+MariaDB [agencia]> SELECT marca, nombre FROM modelo;
++---------+--------+
+| marca   | nombre |
++---------+--------+
+| Seelen  | S      |
+| Ferrari | F      |
++---------+--------+
+2 rows in set (0.001 sec)
+
+MariaDB [agencia]> SELECT marca, nombre, segmento FROM modelo;
++---------+--------+-----------+
+| marca   | nombre | segmento  |
++---------+--------+-----------+
+| Seelen  | S      | Deportivo |
+| Ferrari | F      | Deportivo |
++---------+--------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [agencia]> SELECT * FROM marcas
+    -> WHERE nombre
+    -> IN ('Ferrari');
++--------+---------+--------+
+| codigo | Nombre  | Pais   |
++--------+---------+--------+
+| FER    | Ferrari | Italia |
++--------+---------+--------+
+1 row in set (0.001 sec)
+
+MariaDB [agencia]> SELECT * FROM modelo WHERE marca IN ('Seleen');
+Empty set (0.001 sec)
+
+MariaDB [agencia]> SELECT * FROM modelo;
++---------+--------+-----------+
+| marca   | Nombre | Segmento  |
++---------+--------+-----------+
+| Seelen  | S      | Deportivo |
+| Ferrari | F      | Deportivo |
++---------+--------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [agencia]> SELECT * FROM modelo WHERE marca IN ('Seleen, S');
+Empty set (0.001 sec)
+
+MariaDB [agencia]> SELECT * FROM modelo
+    -> WHER marca
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'marca' at line 2
+MariaDB [agencia]> SELECT * FROM modelo
+    -> WHERE marca
+    -> IN ('Seelen');
++--------+--------+-----------+
+| marca  | Nombre | Segmento  |
++--------+--------+-----------+
+| Seelen | S      | Deportivo |
++--------+--------+-----------+
+1 row in set (0.001 sec)
+
+MariaDB [agencia]> 
+
